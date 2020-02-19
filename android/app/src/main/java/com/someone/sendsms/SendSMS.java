@@ -30,7 +30,7 @@ public class SendSMS extends ReactContextBaseJavaModule {
 
     private void sendCallback(Integer messageId, String message){
         if (callback != null) {
-            callback.invoke(messageId, message);
+            callback.invoke(message);
             callback = null;
         }
     }
@@ -58,13 +58,13 @@ public class SendSMS extends ReactContextBaseJavaModule {
                     switch (getResultCode())
                     {
                         case Activity.RESULT_OK:
-                            sendCallback(messageId, "SMS sent");
+                            sendCallback(messageId, "sent");
                             break;
                         case SmsManager.RESULT_ERROR_GENERIC_FAILURE:
                             sendCallback(messageId, "Generic failure");
                             break;
                         case SmsManager.RESULT_ERROR_NO_SERVICE:
-                            sendCallback(messageId, "No service");
+                            sendCallback(messageId, "no_service");
                             break;
                         case SmsManager.RESULT_ERROR_NULL_PDU:
                             sendCallback(messageId, "Null PDU");
